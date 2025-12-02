@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Learn to Lead DCSE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #4ade80;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(30, 60, 114, 0.9), rgba(42, 82, 152, 0.9)), 
+                        url('https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=1200') center/cover;
+            color: white;
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        /* About Section */
+        .about-content {
+            padding: 5rem 2rem;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-intro {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 4rem;
+        }
+
+        .about-intro h2 {
+            color: #1e3c72;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        /* Vision Section */
+        .vision-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .vision-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .vision-card i {
+            font-size: 3.5rem;
+            color: #2a5298;
+            margin-bottom: 1.5rem;
+        }
+
+        .vision-card h3 {
+            color: #1e3c72;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .vision-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+            border: 4px solid #2a5298;
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member h3 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .team-member .email {
+            color: #2a5298;
+            font-size: 0.9rem;
+            word-break: break-word;
+            margin-bottom: 1rem;
+        }
+
+        .team-member .role {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #1e3c72;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Impact Section */
+        .impact-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4ade80;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1e3c72;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
+            }
+
+            .nav-menu.active {
+                max-height: 300px;
+            }
+
+            .nav-menu li {
+                padding: 0.5rem 0;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .about-intro {
+                padding: 2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Learn to Lead DCSE</a>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>About Learn to Lead</h1>
+            <p>Dedicated Students Making a Difference</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-intro">
+                <h2>Who We Are</h2>
+                <p>Learn to Lead is a student group from UET Peshawar working on a university project focused on greenery and cleanliness. Our goal is to promote a clean, green, and healthy environment on campus and in the community.</p>
+                <p>We create awareness by sharing informative videos, images, and articles through our website and social media platforms. Our team is actively involved in promoting plantation, encouraging responsible waste disposal, and spreading a positive environmental mindset among students.</p>
+                <p>With a team of nine dedicated members, Learn to Lead aims to educate, inspire, and motivate people to contribute towards a cleaner and greener future. We believe that small steps taken today can create a big impact tomorrow.</p>
+            </div>
+
+            <!-- Vision Cards -->
+            <div class="vision-section">
+                <div class="vision-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Our Vision</h3>
+                    <p>To create a sustainable and eco-friendly campus environment that inspires future generations to value and protect our planet.</p>
+                </div>
+                <div class="vision-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Our Goal</h3>
+                    <p>Promote cleanliness and greenery through consistent action, education, and community engagement across UET Peshawar.</p>
+                </div>
+                <div class="vision-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Our Values</h3>
+                    <p>Commitment, responsibility, teamwork, and a deep respect for the environment guide everything we do.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Our Team</h2>
+            <p class="section-subtitle">Nine Dedicated Members Working Towards a Greener Future</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="mustafa.jpg" alt="Syed Muhammad Mustafa Kamal">
+                    </div>
+                    <h3>Syed Muhammad Mustafa Kamal</h3>
+                    <p class="email">mustefa57800@gmail.com</p>
+                    <span class="role">Team Member</span>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="saad.jpg" alt="Muhammad Saad">
+                    </div>
+                    <h3>Muhammad Saad</h3>
+                    <p class="email">msaadkhan5411066@gmail.com</p>
+                    <span class="role">Team Member</span>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="mustafaaa.jpg" alt="Mustafa Khan">
+                    </div>
+                    <h3>Mustafa Khan</h3>
+                    <p class="email">mustafa90984@gmail.com</p>
+                    <span class="role">Team Member</span>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="abdul.jpg" alt="Muhammad Abdul Aziz">
+                    </div>
+                    <h3>Muhammad Abdul Aziz</h3>
+                    <p class="email">abdulaziz200709@gmail.com</p>
+                    <span class="role">Team Member</span>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="salih.jpg" alt="Salih Muhammad">
+                    </div>
+                    <h3>Salih Muhammad</h3>
+                    <p class="email">salihmuhammad33084@gmail.com</p>
+                    <span class="role">Team Member</span>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="female.png" alt="Atika Laila">
+                    </div>
+                    <h3>Atika Laila</h3>
+                    <p class="email">atikalaila127@gmail.com</p>
+                    <span class="role">Team Member</span>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="female.png" alt="Fatima Alam">
+                    </div>
+                    <h3>Fatima Alam</h3>
+                    <p class="email">Fatimaalam850@gmail.com</p>
+                    <span class="role">Team Member</span>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="female.png" alt="Aleena Azam">
+                    </div>
+                    <h3>Aleena Azam</h3>
+                    <p class="email">aleenaazm08@gmail.com</p>
+                    <span class="role">Team Member</span>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <img src="female.png" alt="Javeria Fawad">
+                    </div>
+                    <h3>Javeria Fawad</h3>
+                    <p class="email">javeriafawad1845@gmail.com</p>
+                    <span class="role">Team Member</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Our Impact</h2>
+            <p>Making a difference one step at a time</p>
+            
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Dedicated Members</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Unified Mission</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Commitment</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Positive Impact</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Learn to Lead DCSE - UET Peshawar. All rights reserved.</p>
+        <p>Creating a cleaner, greener future together.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
